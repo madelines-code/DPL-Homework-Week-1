@@ -68,28 +68,34 @@ def user_name(user)
   user[:name]
 end
 
-p user_name(user1)
+puts user_name(user1)
+puts 
+# access user1 name through res2 (user1 data is in reviews)
+# create array of users
+@users = [user1,user2]
+def user_name2(res)
+# get user id of user 1 from restaurant
+  user_id_of_reviewer = res[:reviews][0][:user_id]
+  @users.each do |name|
+    if  name[:id] === user_id_of_reviewer
+      puts name[:name]
+    end
+  end
+ end
 
-# def user_name2(res)
-#   # get user id of user 1 from restaurant
-#   userid = res[:reviews][0][:user_id]
-#   # puts name of user based off user id (using index)
-#   user_index = user.find { |id| user[:id] === userid }
-#   user_index = user_index[1]
-#   user_index = user_index - 1
-#   p user[:name]
-# end
-
-# user_name2(res2)
-
+ user_name2(res2)
+puts 
 
 # access res1 reviews
 
 def print_reviews(res)
-  p res[:reviews]
+  res[:reviews].each do |reviews|
+    puts "User #{reviews[:user_id]} Rating: #{reviews[:rating]}"
+  end
 end
 
 print_reviews(res1)
+puts
 
 # what does this output res1[:dishes]
 # {:name=>"Pad Thai", :price=>10.25, :ingredients=>["noddles", "peppers"]}
@@ -101,11 +107,11 @@ print_reviews(res1)
 def print_dish_names(res)
   dish_names = []
   res[:dishes].each { |name| dish_names.push(name[:name]) }
-  p dish_names
+  puts dish_names
 end
   
 print_dish_names(res1)
-
+puts 
 # print out just the name of res1 dishes along with 
 # ingredients (nested each loop)
 
