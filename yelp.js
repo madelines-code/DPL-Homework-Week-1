@@ -70,9 +70,55 @@ const userName = (user) => {
 userName(user1)
 
 // access user1 name through res2 (user1 data is in reviews)
+// get user id
+// call user name if user id matches user id
+
+// console.log(res2.reviews[0].user_id) 
+
 const userName2 = (res) => {
-  res.reviews.user_id.get(user_id);
-  console.log(userId);
+  users = [user1,user2]
+  user1Id = (res.reviews[0].user_id);
+  console.log(user1Id);
+  users.forEach((user) => { if(user1Id === user.id) {
+    console.log(user.name)};
+  });
 };
 
-console.log(userName2(res2, 1))
+
+console.log(userName2(res2));
+///////WHY does this return undefined after the answer?
+
+
+// access res1 reviews
+
+console.log(res1.reviews)
+
+// const printReviews = (res) => {
+//   res.reviews.forEach((review) => {
+//     console.log(`User ${user_id} Rating: ${rating}`); //ReferenceError: user_id is not defined
+//   });
+// };
+
+// console.log(printReviews(res1));
+
+// # print out just the name of res1 dishes (each loop)
+const printDishNames = (res) => {
+  dishNames = []
+  res.dishes.forEach((dish) => { dishNames.push(dish.name);
+});
+console.log(dishNames);
+};
+console.log(printDishNames(res1));
+
+// print out just the name of res1 dishes along with 
+// ingredients (nested each loop)
+
+
+const printDishNameIngredients = (res) => {
+  res.dishes.forEach((dish) => { 
+    console.log("${dish.name}");
+    console.log("ingredients");
+});
+};
+
+console.log(printDishNameIngredients(res1));

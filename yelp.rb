@@ -86,6 +86,7 @@ def user_name2(res)
  user_name2(res2)
 puts 
 
+
 # access res1 reviews
 
 def print_reviews(res)
@@ -116,7 +117,6 @@ puts
 # ingredients (nested each loop)
 
  def print_name_ingredients(res)
-  dish_and_ingredients = []
   res[:dishes].each do |list|
     puts "#{list[:name]}"
     puts "Ingredients:"
@@ -127,6 +127,13 @@ puts
  end
 
  print_name_ingredients(res1)
+
+ # why doesn't this work??
+#  def print_name_ingredients2(res)
+#   list_of_dishes = res.slice(:name, :ingredients)
+#  end
+
+# puts print_name_ingredients2(res1)
 
 # create a function that takes a user and return a string with the users name and id
 
