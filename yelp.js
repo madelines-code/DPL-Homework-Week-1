@@ -93,20 +93,20 @@ console.log(userName2(res2));
 
 console.log(res1.reviews)
 
-// const printReviews = (res) => {
-//   res.reviews.forEach((review) => {
-//     console.log(`User ${user_id} Rating: ${rating}`); //ReferenceError: user_id is not defined
-//   });
-// };
+const printReviews = (res) => {
+  res.reviews.forEach((review) => {
+    console.log(`User ${review.user_id} Rating: ${review.rating}`); //ReferenceError: user_id is not defined
+  });
+};
 
-// console.log(printReviews(res1));
+console.log(printReviews(res1));
 
 // # print out just the name of res1 dishes (each loop)
 const printDishNames = (res) => {
   dishNames = []
-  res.dishes.forEach((dish) => { dishNames.push(dish.name);
+  res.dishes.forEach((dish) => { dishNames.push(dish.name); 
 });
-console.log(dishNames);
+console.log(`${dishNames}`);
 };
 console.log(printDishNames(res1));
 
@@ -116,9 +116,94 @@ console.log(printDishNames(res1));
 
 const printDishNameIngredients = (res) => {
   res.dishes.forEach((dish) => { 
-    console.log("${dish.name}");
-    console.log("ingredients");
+    console.log(`${dish.name}`);
+    console.log("Ingredients:");
+    dish.ingredients.forEach((ingredient) => {
+      console.log(`${ingredient}`);
+    })
 });
 };
 
 console.log(printDishNameIngredients(res1));
+
+// create a function that takes a user and return a string 
+// with the users name and id
+const nameIdString = (user) => {
+    return `Name: ${user.name} ID: ${user.id}`
+};
+console.log(nameIdString(user1));
+// create a method that takes a res and returns the menu of that res
+const resMenu = (res) => {
+  console.log(`${res.name} Menu`);
+  res.dishes.forEach((list) => {
+    console.log(`${list.name}`);
+    console.log('Contains:');
+    list.ingredients.forEach((ingredient) => {
+      console.log(`${ingredient}`);
+    });
+  });
+};
+
+console.log(resMenu(res1))
+
+// create a method that takes a res and returns average review
+
+const avgReview = (res) => {
+  ratingArr = [];
+  totalRating = 0;
+  res.reviews.forEach((rating) => {
+    ratingArr.push(rating.rating);
+  });
+  res.reviews.forEach((rating) => {
+    totalRating += rating.rating;
+  });
+  average = totalRating / (ratingArr.length)
+  return average
+};
+
+console.log(avgReview(res1));
+
+// create an array of restaurants and do CRUD actions
+
+// a simple that takes a restaurants and adds to your array
+
+restaurants = [res1,res2]
+res3 = {
+  id: 3,
+  name: "Papa Johns",
+  location: {
+    city: "SLC",
+    state: "UT",
+  },
+  delivery: true,
+  days_open: "mon,tues,wed,thur,fri,sat,sun",
+  likes: 510,
+  dishes: [
+    { name: "Supreme Pizza", price: 11.25, ingredients: ["crust", "peppers","onions"] },
+    { name: "Cheese Pizza", price: 12.25, ingredients: ["crust", "cheese"] },
+  ],
+  reviews: [
+    { user_id: 1, rating: 6 },
+    { user_id: 2, rating: 3 },
+  ] };
+
+const addRestaurant = (res) => {
+  restaurants.push(res)
+};
+
+addRestaurant(res3);
+
+// read - list restaurants
+const printRestaurants = (arr) => {
+  arr.forEach((list) =>{
+    console.log(`${list.name} ${list.location.city}`);
+  });
+};
+
+console.log(printRestaurants(restaurants));
+
+// update - a simple method that takes restaurants and updates that to your array
+
+// delete - delete a restaurant
+
+// loop through your restaurants and return those with likes > 500 (select/filter)
